@@ -10,6 +10,7 @@
 
 <script>
 
+
 import Todos from './components/Todos.vue'
 
 export default {
@@ -26,7 +27,7 @@ export default {
         {
           id:1, 
           title: 'One', 
-          completed: false
+          completed: true
         },
         {
           id:2, 
