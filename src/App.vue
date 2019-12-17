@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Header/>
+
     <!-- Catch the del-todo event and call that message  -->
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
   </div>
@@ -12,14 +14,16 @@
 <script>
 
 /*eslint no-console: ["error", { allow: ["debug"] }] */
-import Todos from './components/Todos.vue'
+import Header from './components/layout/Header'
+import Todos from './components/Todos'
 
 export default {
 
   name: 'app',
   
   components: {
-    Todos
+    Todos, 
+    Header
   }, 
 
   data() {
