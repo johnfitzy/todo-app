@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Todos v-bind:todos="todos"/>
+    <!-- Catch the del-todo event and call that message  -->
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
   </div>
 </template>
 
@@ -10,7 +11,7 @@
 
 <script>
 
-
+/*eslint no-console: ["error", { allow: ["debug"] }] */
 import Todos from './components/Todos.vue'
 
 export default {
@@ -41,7 +42,16 @@ export default {
         }
       ]
     }
-  }
+  }, 
+
+  methods: {
+    deleteTodo(id) {
+      console.debug('Hello john')
+      this.todos = this.todos.filter(todo => todo.id !== id);
+    }
+  },
+
+
 }
 
 </script>
