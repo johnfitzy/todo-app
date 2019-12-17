@@ -18,6 +18,7 @@
 import Header from './components/layout/Header'
 import Todos from './components/Todos'
 import AddTodo from './components/AddTodo'
+import axios from 'axios';
 
 export default {
 
@@ -31,23 +32,7 @@ export default {
 
   data() {
     return {
-      todos: [
-        {
-          id:1, 
-          title: 'One', 
-          completed: true
-        },
-        {
-          id:2, 
-          title: 'Two', 
-          completed: true
-        },
-        {
-          id:3, 
-          title: 'Three', 
-          completed: false
-        }
-      ]
+      todos: []
     }
   }, 
 
@@ -57,12 +42,18 @@ export default {
       this.todos = this.todos.filter(todo => todo.id !== id);
     }, 
 
-    addTodo(newToDo) {
-            console.debug('Hello john')
-             this.todos = [...this.todos, newToDo];
+    addTodo(newTodo) {
+          
+             this.todos = [...this.todos, newTodo];
     }
   },
 
+  // this is like react component did mount
+  created () {
+      axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+        .then(response => this.todos = response.data)
+        .catch(error => console.debug('An error happened ' + error));
+  }
 
 }
 
