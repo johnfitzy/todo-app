@@ -26,17 +26,17 @@ export default {
         {
           id:1, 
           title: 'One', 
-          conpleteded: false
+          completed: false
         },
         {
           id:2, 
           title: 'Two', 
-          conpleteded: true
+          completed: true
         },
         {
           id:3, 
           title: 'Three', 
-          conpleteded: false
+          completed: false
         }
       ]
     }
