@@ -8,9 +8,6 @@
 </template>
 
 
-
-
-
 <script>
 
 /*eslint no-console: ["error", { allow: ["debug"] }] */
@@ -39,13 +36,27 @@ export default {
   methods: {
     
     deleteToDo(id) {
-      this.todos = this.todos.filter(todo => todo.id !== id);
+
+
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(() => this.todos =  this.todos.filter(todo => todo.id !== id))
+        .catch(error => console.debug('An error happened ' + error));
+
     }, 
 
     addTodo(newTodo) {
-          
-             this.todos = [...this.todos, newTodo];
-    }
+
+        const {title, completed } = newTodo;
+
+        // when you make a post request to /todos it gives you back the data that you sent
+        axios.post('https://jsonplaceholder.typicode.com/todos', {
+          title, 
+          completed
+        })
+        .then(response => this.todos = [...this.todos, response.data])
+        .catch(error => console.debug('An error happened ' + error));
+
+      }
   },
 
   // this is like react component did mount
